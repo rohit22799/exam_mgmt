@@ -1,0 +1,38 @@
+<flectra>
+    <data>
+
+        <record id="subject_data_form_view" model="ir.ui.view">
+            <field name="name">Subject Data</field>
+            <field name="model">subject.data</field>
+            <field name="arch" type="xml">
+                <form string="subject Detail">
+                    <sheet>
+                        <group>
+                           <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="subject_data_list_view" model="ir.ui.view">
+            <field name="name">Subject Data</field>
+            <field name="model">subject.data</field>
+            <field name="arch" type="xml">
+                <tree string="subject Detail">
+                            <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_subject_data" model="ir.actions.act_window">
+            <field name="name">Subject Data</field>
+            <field name="res_model">subject.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="subject_data" name="Subject Data" parent="student_data_root" action="action_subject_data"/>
+
+    </data>
+</flectra>

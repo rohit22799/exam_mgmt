@@ -1,0 +1,61 @@
+<flectra>
+    <data>
+
+        <record id="college_data_form_view" model="ir.ui.view">
+            <field name="name">College Data</field>
+            <field name="model">college.data</field>
+            <field name="arch" type="xml">
+                <form string="College Detail">
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="college_code"/>
+                            <field name="college_fee"/>
+                        </group>
+                        <group string="student Info">
+                            <group>
+                                <button name="total_total_student1" type="object" string="Total student:"
+                                        class="oe_stat_button">
+                                    <field name="total_student" readonly="1"/>
+                                </button>
+                            </group>
+
+                            <field name="college_info_line" nolabel="1" readonly="1">
+                                <tree string="student Info">
+                                    <field name="name"/>
+                                    <field name="student_enrollno"/>
+                                    <field name="subject_data_ids"/>
+                                    <field name="student_fee"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="college_data_list_view" model="ir.ui.view">
+            <field name="name">College Data</field>
+            <field name="model">college.data</field>
+            <field name="arch" type="xml">
+                <tree string="College Detail">
+                    <field name="name"/>
+                    <field name="college_code"/>
+                    <field name="college_address"/>
+                    <field name="college_info_line"/>
+                    <field name="total_student"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_college_data" model="ir.actions.act_window">
+            <field name="name">College Data</field>
+            <field name="res_model">college.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="college_data" name="College Data" parent="student_data_root" action="action_college_data"/>
+
+    </data>
+</flectra>

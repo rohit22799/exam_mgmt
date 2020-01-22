@@ -1,0 +1,97 @@
+<flectra>
+    <data>
+
+        <record id="student_data_form_view" model="ir.ui.view">
+            <field name="name">Student Data</field>
+            <field name="model">student.data</field>
+            <field name="arch" type="xml">
+                <form string="student Detail">
+                    <header>
+                        <button string="Draft" type="object" name="draft_statusbar" class="oe_highlight"
+                                attrs="{'invisible': [('state', '=', 'done')]}"/>
+                        <button string="Fill Up" type="object" name="fillup_statusbar"
+                                attrs="{'invisible': [('state', '=', 'done')]}"/>
+                        <button string="Pending" type="object" name="pending_statusbar"
+                                attrs="{'invisible': ['|',('state', '=', 'done'), ('state', '=', 'pending')]}"/>
+                        <button string="Done" type="object" name="done_statusbar"
+                                attrs="{'invisible': [('state', '=', 'done')]}"/>
+                        <field name="state" widget="statusbar" clickable="True"/>
+                    </header>
+                    <sheet>
+                        <group col="4">
+                            <field name="name"/>
+                            <field name="student_enrollno"/>
+                            <field name="student_sem"/>
+                            <field name="student_stream"/>
+                        </group>
+                        <group col="4">
+                            <field name="college_info_id"/>
+                            <field name="student_birthdate"/>
+                            <field name="student_fee"/>
+                            <field name="subject_data_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="final_price"/>
+                        </group>
+                        <group>
+                            <button name="total_total_subject" type="object" string="Total Subject:"
+                                    class="oe_stat_button">
+                                <field name="total_subject" readonly="1"/>
+                            </button>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="student_data_list_view" model="ir.ui.view">
+            <field name="name">Student Data</field>
+            <field name="model">student.data</field>
+            <field name="arch" type="xml">
+                <tree string="student Detail">
+                    <field name="name"/>
+                    <field name="student_enrollno"/>
+                    <field name="college_info_id"/>
+                    <field name="subject_data_ids"/>
+                    <field name="student_fee"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="student_data_kanban_view" model="ir.ui.view">
+            <field name="name">Student Data</field>
+            <field name="model">student.data</field>
+            <field name="arch" type="xml">
+                <kanban string="Student Detail">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <field name="name"/>
+                                <br></br>
+                                <field name="student_enrollno"/>
+                                <br></br>
+                                <field name="student_sem"/>
+                                <br></br>
+                                <field name="student_stream"/>
+                                <br></br>
+                                <field name="student_birthdate"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_student_data" model="ir.actions.act_window">
+            <field name="name">Student Data</field>
+            <field name="res_model">student.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <menuitem id="student_root" name="student" web_icon="exam_mgmt,static/description/icon.png"/>
+        <menuitem id="student_data_root" name="student Data" parent="student_root"/>
+        <menuitem id="student_data" name="student Data" parent="student_data_root" action="action_student_data"/>
+
+    </data>
+</flectra>
